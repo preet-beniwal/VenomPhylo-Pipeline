@@ -1,94 +1,94 @@
+<div align="center">
+
 # 🐍 VenomPhylo-Pipeline
 
-An automated Python framework for the phylogenetic analysis of Indian snake venom proteins. 
+**An Automated Python Framework for Comparative Molecular Evolution and Variant Mapping of Indian Snake Venom Toxins**
 
-I built this tool to solve a specific bottleneck in the UGC-funded snake venom project at our Bioinformatics department. Previously, analyzing venom evolution required manually searching NCBI, downloading sequences one by one, and clicking through desktop GUIs like MEGA. This pipeline automates the entire process—from fetching raw data to generating a visual dashboard.
+[![Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg)](https://www.python.org/)
+[![Biopython](https://img.shields.io/badge/Biopython-1.85-green.svg)](https://biopython.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.48-red.svg)](https://streamlit.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-##  Why I Built This
-Most bioinformatics tools are designed for Linux clusters or high-end servers. I wanted to create a reproducible pipeline that runs on a standard lab laptop (**Intel i5, 8GB RAM**) without crashing, so any student in the department can run it without needing specialized hardware or software setup skills.
+</div>
 
-##  Pipeline Features
-1. **Data Scraping:** Automatically queries NCBI via Biopython and downloads venom toxin sequences.
-2. **Alignment & Phylogeny:** Wraps MAFFT and IQ-TREE in a Python CLI wrapper to generate Maximum Likelihood trees.
-3. **Evolutionary Analysis:** Calculates amino acid conservation scores to identify mutation hotspots (a lightweight alternative to running PAML on Windows).
-4. **Interactive Dashboard:** A Streamlit web app that visualizes the tree, charts mutation hotspots, and displays raw Newick data for downstream tools like iTOL.
+---
 
-##  Prerequisites & Installation (Windows)
+## 📖 Overview
 
-Because some of these tools are natively built for Linux, getting them to run on Windows requires a few specific steps:
+This pipeline was developed to solve a specific computational bottleneck in the UGC-funded snake venom project at the Department of Bioinformatics, GGDSD College. 
 
-**1. Set up the Python Environment**
+Traditionally, analyzing venom evolution required manual NCBI queries, downloading sequences individually, and navigating desktop GUIs like MEGA. **VenomPhylo-Pipeline** automates the entire lifecycle—from raw data extraction to interactive visualization—while remaining fully reproducible on standard consumer hardware.
+
+> **Hardware Constraint Note:** Most bioinformatics tools are designed for Linux clusters. This pipeline was explicitly optimized to run on an **Intel i5, 8GB RAM** Windows laptop, ensuring accessibility for resource-limited academic labs.
+
+---
+
+## ✨ Key Features
+
+| Module | Function | Technology |
+| :--- | :--- | :--- |
+| **Data Engine** | Automated NCBI querying, filtering, and FASTA formatting | `Biopython` |
+| **Phylogeny Engine** | Automated multiple sequence alignment and Maximum Likelihood tree generation | `MAFFT`, `IQ-TREE` |
+| **Analytics Engine** | Amino acid conservation scoring and mutation hotspot identification | `Pandas`, `Matplotlib` |
+| **Dashboard** | Interactive web interface for exploring trees and mutation data | `Streamlit`, `Plotly` |
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Python Environment
+We recommend using Miniconda to manage dependencies.
+
 ```bash
 git clone https://github.com/preet-benival/VenomPhylo-Pipeline.git
 cd VenomPhylo-Pipeline
 conda env create -f environment.yml
 conda activate venom_project
 
-**2. Install the Command-Line Tools (Manually)**
-Conda often fails to install these specific bio-tools on Windows, so I had to download the binaries manually. Make sure they are extracted to the root of your C: drive:
+2. Command-Line Bioinformatics Tools
+Conda frequently fails to resolve dependencies for these specific tools on Windows.Therefore,they must be downloaded and extracted manually to the root C:\ drive.
+  . MAFFT for Windows ~ Extract to C:\mafft
+  . IQ-TREE2 ~ Extract to C:\iqtree
 
-· MAFFT for Windows (Extract to C:\mafft)
-· IQ-TREE 2 (Extract to C:\iqtree)
+🚀 Usage
 
- Usage
-
-Run the scripts in order. I recommend keeping the Streamlit app in a separate terminal window.
-
-```bash
-# 1. Fetch sequences from NCBI (Tested with Naja naja PLA2)
+Run the pipeline scripts sequentially. Keep the Streamlit dashboard in a separate terminal window.
+# Step 1: Fetch sequences from NCBI (Validated with Naja naja PLA2)
 python scripts/fetch_data.py
 
-# 2. Align sequences and build the phylogenetic tree
+# Step 2: Perform alignment and build the phylogenetic tree
 python scripts/run_phylogeny.py
 
-# 3. Calculate mutation hotspots and render the tree image
+# Step 3: Calculate mutation hotspots and render the tree image
 python scripts/analyze_evolution.py
 
-# 4. Launch the interactive dashboard
+# Step 4: Launch the interactive dashboard
 streamlit run app.py
-```
 
- Outputs
+📊 Outputs
 
-After running the pipeline, check the results/ folder for:
+All results are saved to the results/ directory:
 
-· aligned.fasta: Multiple sequence alignment
-· tree.treefile: Newick phylogeny tree (can be uploaded to iTOL)
-· tree_visualization.png: Rendered phylogenetic tree image
-· mutation_hotspots.csv: Conservation scores per amino acid position
+File Description
+aligned.fasta Multiple sequence alignment generated by MAFFT
+tree.treefile Newick phylogeny tree (compatible with iTOL, FigTree)
+tree_visualization.png Rendered phylogenetic tree image
+mutation_hotspots.csv Conservation scores per amino acid position
 
 🔬 Future Work & Scaling
 
-Right now, this pipeline serves as a proof-of-concept on a single species. The next step is to expand the data engine to automatically loop through the "Big Four" medically significant Indian venomous snakes (Naja naja, Bungarus caeruleus, Daboia russelii, Echis carinatus) to perform comparative venom evolution analysis.
+Currently, this pipeline serves as a proof-of-concept validated on a single species (Naja naja).
+
+The next phase involves expanding the data engine to automatically loop through the "Big Four" medically significant Indian venomous snakes (Naja naja, Bungarus caeruleus, Daboia russelii, Echis carinatus). This will enable a comprehensive comparative analysis of venom evolution across all major Indian species, directly supporting antivenom research.
 
 👤 Author
 
 Preet Beniwal
-BCA Student | Department of Computer Science, GGDSD College, Chandigarh
-Built for the UGC Snake Venom Evolution Project (PI: Prof. Varinder Kumar)
+BCA Student | Department of Computer Science
+Goswami Ganesh Dutta Sanatan Dharma (GGDSD) College, Chandigarh
 
-```
+Project Context: Built for the UGC Snake Venom Evolution Project (PI: Prof. Varinder Kumar)
 
 ---
 
-### 🚀 How to Commit and Push This Update to GitHub
 
-Once you have saved the file locally on your laptop, go back to your **Anaconda Prompt** and run these commands one by one:
-
-1. Make sure you are in your main project folder:
-   ```bash
-   cd C:\Users\Preet\OneDrive\Documents\VenomPhylo-Pipeline
-```
-
-1. Add the updated file:
-   ```bash
-   git add README.md
-   ```
-2. Commit the change:
-   ```bash
-   git commit -m "docs: update README with detailed context, prerequisites, and future scaling plans"
-   ```
-3. Push it to GitHub:
-   ```bash
-   git push origin main
-   ```
