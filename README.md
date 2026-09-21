@@ -59,7 +59,7 @@ Conda frequently fails to resolve dependencies for these specific tools on Windo
 
 Run the pipeline scripts sequentially. Keep the Streamlit dashboard in a separate terminal window.
 
-* **Step 1: Fetch sequences from NCBI (Validated with Naja naja PLA2)**
+* **Step 1: Fetch sequences from NCBI (Validated with PLA2)**
   `python scripts/fetch_data.py`
 
 * **Step 2: Perform alignment and build the phylogenetic tree**
@@ -86,7 +86,7 @@ All results are saved to the `results/` directory:
 
 ## 🔬 Future Work & Scaling
 
-Currently, this pipeline serves as a proof-of-concept validated on a single species (*Naja naja*). 
+Currently, this pipeline serves as a proof-of-concept validated on a single species. 
 
 The next phase involves expanding the data engine to automatically loop through the **"Big Four" medically significant Indian venomous snakes** (*Naja naja, Bungarus caeruleus, Daboia russelii, Echis carinatus*). This will enable a comprehensive comparative analysis of venom evolution across all major Indian species, directly supporting antivenom research.
 
