@@ -39,7 +39,7 @@ Traditionally, analyzing venom evolution required manual NCBI queries, downloadi
 ### 1. Python Environment
 We recommend using Miniconda to manage dependencies.
 
-`git clone https://github.com/preet-benival/VenomPhylo-Pipeline.git`
+`git clone https://github.com/preet-beniwal/VenomPhylo-Pipeline.git`
 
 `cd VenomPhylo-Pipeline`
 
